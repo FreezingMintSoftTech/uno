@@ -1,5 +1,6 @@
 ﻿using CoreGraphics;
 using System;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 
 namespace Uno.UI.Extensions

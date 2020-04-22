@@ -205,7 +205,12 @@ namespace Windows.UI.Xaml.Controls
 			var font = UIFontHelper.TryGetFont((float)FontSize, FontWeight, FontStyle, FontFamily);
 
 			attributes.Font = font;
-			attributes.ForegroundColor = (Foreground as SolidColorBrush)?.ColorWithOpacity;
+			attributes.ForegroundColor = Foreground switch
+			{
+				SolidColorBrush scb => scb.ColorWithOpacity,
+				GradientBrush gb => gb.FallbackColorWithOpacity,
+				_ => Colors.Transparent
+			};
 
 			if (TextDecorations != TextDecorations.None)
 			{

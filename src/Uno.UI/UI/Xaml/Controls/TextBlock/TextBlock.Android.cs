@@ -210,7 +210,7 @@ namespace Windows.UI.Xaml.Controls
 			var foreground = Foreground switch
 			{
 				SolidColorBrush scb => scb.ColorWithOpacity,
-				GradientBrush gb => gb.FallbackColor,
+				GradientBrush gb => gb.FallbackColorWithOpacity,
 				_ => Colors.Transparent
 			};
 

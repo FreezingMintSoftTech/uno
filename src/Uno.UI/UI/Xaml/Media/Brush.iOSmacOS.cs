@@ -21,7 +21,7 @@ namespace Windows.UI.Xaml.Media
 	{
 		internal static IDisposable AssignAndObserveBrush(Brush b, Action<CGColor> colorSetter)
 		{
-			var disposables = new CompositeDisposable();
+			var disposables = new CompositeDisposable(2);
 
 			if (b is SolidColorBrush colorBrush)
 			{
@@ -34,18 +34,35 @@ namespace Windows.UI.Xaml.Media
 					.DisposeWith(disposables);
 
 				colorBrush.RegisterDisposablePropertyChangedCallback(
-						SolidColorBrush.OpacityProperty,
+						OpacityProperty,
 						(s, colorArg) => colorSetter((s as SolidColorBrush).ColorWithOpacity)
+					)
+					.DisposeWith(disposables);
+			}
+
+			if (b is GradientBrush gradientBrush)
+			{
+				colorSetter(gradientBrush.FallbackColorWithOpacity);
+
+				gradientBrush.RegisterDisposablePropertyChangedCallback(
+						GradientBrush.FallbackColorProperty,
+						(s, colorArg) => colorSetter((s as GradientBrush).FallbackColorWithOpacity)
+					)
+					.DisposeWith(disposables);
+
+				gradientBrush.RegisterDisposablePropertyChangedCallback(
+						OpacityProperty,
+						(s, colorArg) => colorSetter((s as GradientBrush).FallbackColorWithOpacity)
 					)
 					.DisposeWith(disposables);
 			}
 			else if (b is ImageBrush imageBrush)
 			{
-				Action<_Image> action = _ => colorSetter(SolidColorBrushHelper.Transparent.Color);
+				void ImageChanged(UIImage _) => colorSetter(SolidColorBrushHelper.Transparent.Color);
 
-				imageBrush.ImageChanged += action;
+				imageBrush.ImageChanged += ImageChanged;
 
-				disposables.Add(() => imageBrush.ImageChanged -= action);
+				disposables.Add(() => imageBrush.ImageChanged -= ImageChanged);
 			}
 			else
 			{
