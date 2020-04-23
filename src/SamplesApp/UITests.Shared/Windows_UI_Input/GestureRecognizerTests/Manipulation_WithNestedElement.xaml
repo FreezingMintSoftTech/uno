@@ -40,7 +40,7 @@
 		</Border>
 
 		<StackPanel Grid.Column="1">
-			<TextBlock
+			<TextBlock x:Name="_theHeader"
 				Text="Drag and drop the blue square, you should get a mix of ''[PARENT] Manip delta'' ** AND ** ''[CHILD] Pointer moved''."
 				TextWrapping="Wrap"/>
 			<TextBlock

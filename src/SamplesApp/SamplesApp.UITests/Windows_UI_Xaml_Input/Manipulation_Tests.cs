@@ -50,8 +50,12 @@ namespace SamplesApp.UITests.Windows_UI_Xaml_Input
 		{
 			Run("UITests.Windows_UI_Input.GestureRecognizerTests.Manipulation_WithNestedElement");
 
+			_app.WaitForElement("_result");
+
 			var rect = _app.WaitForElement("_target").Single().Rect;
 			_app.DragCoordinates(rect.X + 10, rect.Y + 10, rect.Right - 10, rect.Bottom - 10);
+
+			_app.WaitForElement("_theHeader");
 
 			_app.WaitForElement("_result");
 
