@@ -718,26 +718,6 @@
 		</IgnoreSet>
 
 		<IgnoreSet baseVersion="2.1.37">
-			<Types>
-			<!-- Styles overhaul -->
-				<Member
-					fullName="Uno.UI.GlobalStaticResources"
-					reason="Resources defined in XAML are no longer converted to public properties on GlobalStaticResources. The type itself is still present." />
-				<Member
-					fullName="Uno.UI.Toolkit.GlobalStaticResources"
-					reason="Resources defined in XAML are no longer converted to public properties on GlobalStaticResources. The type itself is still present." />
-				<Member
-					fullName="Windows.UI.Xaml.GenericStyles"
-					reason="Removed obsolete non-standard type (Styles are now all defined in XAML)." />
-				<Member
-					fullName="Windows.UI.Xaml.Style`1"
-					reason="Removed unused non-standard generic version of Style." />
-				<Member
-					fullName="Uno.UI.Controls.BindableSearchView"
-					reason="Removed unused Uno-only legacy control." />
-			<!-- ^^ Styles overhaul -->
-			</Types>
-
 			<Methods>
 				<Member
 				  fullName="System.Void Windows.UI.Xaml.Controls.DatePickerSelectedValueChangedEventArgs..ctor()"
@@ -819,6 +799,37 @@
 				<Member
 					fullName="System.Void Windows.UI.Xaml.Controls.Control.OnPointerCaptureLost(Windows.UI.Xaml.Input.PointerRoutedEventArgs args)"
 					reason="Wrong parameter name, restored the WinUI one"/>
+
+			</Methods>
+			<Properties>
+				<Member
+					fullName="Windows.UI.Xaml.Style Uno.UI.GlobalStaticResources::__ImplicitStyle_Windows_UI_Xaml_Controls_DatePickerSelector()"
+					reason="Style removed from monoandroid (xamarin:Style with only ios:Setter)" />
+			</Properties>
+		</IgnoreSet>
+
+		<IgnoreSet baseVersion="2.2.0">
+			<Types>
+			<!-- Styles overhaul -->
+				<Member
+					fullName="Uno.UI.GlobalStaticResources"
+					reason="Resources defined in XAML are no longer converted to public properties on GlobalStaticResources. The type itself is still present." />
+				<Member
+					fullName="Uno.UI.Toolkit.GlobalStaticResources"
+					reason="Resources defined in XAML are no longer converted to public properties on GlobalStaticResources. The type itself is still present." />
+				<Member
+					fullName="Windows.UI.Xaml.GenericStyles"
+					reason="Removed obsolete non-standard type (Styles are now all defined in XAML)." />
+				<Member
+					fullName="Windows.UI.Xaml.Style`1"
+					reason="Removed unused non-standard generic version of Style." />
+				<Member
+					fullName="Uno.UI.Controls.BindableSearchView"
+					reason="Removed unused Uno-only legacy control." />
+			<!-- ^^ Styles overhaul -->
+			</Types>
+
+			<Methods>
 			<!-- Styles overhaul -->
 			  <Member
 				  fullName="System.Void Windows.UI.Xaml.FrameworkElement.OnStyleChanged(Windows.UI.Xaml.Style oldStyle, Windows.UI.Xaml.Style newStyle)"
@@ -857,14 +868,8 @@
 				  fullName="System.Void Windows.UI.Xaml.Controls.NativePage.set_Style(Windows.UI.Xaml.Style value)"
 				  reason="Removed unused non-standard property"/>
 			<!-- ^^ Styles overhaul -->
-
 			</Methods>
-			<Properties>
-				<Member
-					fullName="Windows.UI.Xaml.Style Uno.UI.GlobalStaticResources::__ImplicitStyle_Windows_UI_Xaml_Controls_DatePickerSelector()"
-					reason="Style removed from monoandroid (xamarin:Style with only ios:Setter)" />
-
-					
+			<Properties>					
 			<!-- Styles overhaul -->
 			  <Member
 				  fullName="System.Func`2&lt;System.String,System.Object&gt; Windows.UI.Xaml.ResourceDictionary::DefaultResolver()"
